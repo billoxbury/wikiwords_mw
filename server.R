@@ -8,16 +8,14 @@ server_out <- list()
 server_calc[["vset1"]] <- function(calc, sess){
   observeEvent(calc$word1, {
       w <- req(calc$word1)
-      if(w=="") return()
-      calc[["vset1"]] <- findnodes(w)
+      calc[["vset1"]] <- if(w=="") NULL else findnodes(w)
       })
 }
 
 server_calc[["vset2"]] <- function(calc, sess){
   observeEvent(calc$word2, {
     w <- req(calc$word2)
-    if(w=="") return()
-    calc[["vset2"]] <- findnodes(w)
+    calc[["vset2"]] <- if(w=="") NULL else findnodes(w)
   })
 }
 
@@ -98,7 +96,9 @@ server_out[["mainplot"]] <- function(calc, sess){
     if(calc$giant) handplot(giant, lout[giantv,])
     else handplot(mg, lout)
     # draw paths:
-    overlay_paths(calc$vset1, calc$vset2, lout, cex=0.7)
+    if(calc$word1 != "" | calc$word2 != ""){
+      overlay_paths(calc$vset1, calc$vset2, lout, cex=0.7) 
+    }
   })
 }
 

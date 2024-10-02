@@ -21,7 +21,7 @@ ui[["control"]] <- fluidPage(
                                         "Fruchterman-Reingold",
                                         "Kamada-Kawai",
                                         "Reingold-Tilford"),
-                            selected = "Fruchterman-Reingold")
+                            selected = "As in main plot above")
     ),
     mainPanel()
   )
